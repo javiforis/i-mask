@@ -18,7 +18,6 @@ const JWT = require("./lib/JWT.js");
 const {CredentialsValidator, EmailValidator, PasswordValidator} = require("./lib/validator.js");
 const {getGoogleAuthURL, getGoogleUser} = require("./lib/OauthGoogle.js");
 const {PromiseConnectionDB} = require("./lib/ConnectionDB.js");
-const {FirebaseUpload, getDate} = require("./lib/Firebase/fbStorage.js");
 const optionsJWT = {
 	"maxAge": 1000 * 60 * 15 * 4 * 24 * 15, // would expire after 15 days		////// OPTIONS DE JWT//////
 	"httpOnly": true, // The cookie only accessible by the web server
@@ -437,8 +436,8 @@ server.post("/save-photo", upload.none(), (req, res) => {
 
 	const {img} = req.body;
 	
-    var base64Data = img.replace(/^data:image\/png;base64,/, "");
-    fs.writeFile(`./public/imgs/${getDate()}.png`, base64Data, "base64", err => {
+    let base64Data = img.replace(/^data:image\/png;base64,/, "");
+    fs.writeFile(`public/imgs/${getDate()}.png`, base64Data, "base64", err => {
 		if(err)
 			res.send({"res" : "-1", "msg" : "writefile failed"});
 		else {
@@ -447,24 +446,6 @@ server.post("/save-photo", upload.none(), (req, res) => {
 	});
 });
 
-server.post("/upload-photo-to-firebase", upload.none() , async (req, res) => {
-
-	const {img} = req.body;
-	
-	if (img){
-
-		const url = await FirebaseUpload(img);
-		//Deberia generar una url y un id { url, idPhoto} = await FirebaseUpload();
-		if(url){
-			res.send({"res" : "1", url});
-		} else {
-			res.send({"res" : "-1", "msg" : "img was not uploaded"});
-		}
-		
-	} else
-		res.send({"error": "No image provided"})
-	// res.send({"url": await FirebaseUpload(img)});
-});
 
 server.post("/add-personal-mask", (req, res) => {
 
@@ -531,6 +512,28 @@ server.put("/change-user-name", (req, res) => {
 		res.send({"res" : "-3", "msg" : "no usrid or name or newName"})
 	}
 });
+
+///////// PYTHON ////////////
+
+const {spawn} = require("child_process");
+
+function getMaskData(url) {
+    return new Promise((resolve, reject) => {
+
+        const python = spawn('python', [__dirname + "/python/main.py", url]);
+        
+        python.stdout.on("data", (data) => {
+            resolve(JSON.parse(data.toString()))
+        });
+        
+        python.stderr.on("data", (data) => {
+            console.error("ERROR", data.toString());
+            reject({error: "There is an error"});
+        });
+    });
+}
+
+getMaskData(__dirname + "/public/imgs/noffpp22.jpg").then(data => console.log(data)).catch(e => console.log(e));
 
 
 

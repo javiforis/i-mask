@@ -47,28 +47,30 @@ init();
 // Draw image
 
 let context = canvas.getContext('2d');
-	snap.addEventListener("click", function() {
-			context.width=video.videoWidth;
-			context.height=video.videoHeight;
-			canvas.width=video.videoWidth;
-			canvas.height=video.videoHeight;
-			context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-		});
-		switchCamera.addEventListener("click", async function() {
-			shouldFaceUser = !shouldFaceUser;
-			previousStream.getTracks().forEach(t => {
-			    t.stop();
-			});
-			await init();
-		});
+	
+snap.addEventListener("click", function() {
+	context.width=video.videoWidth;
+	context.height=video.videoHeight;
+	canvas.width=video.videoWidth;
+	canvas.height=video.videoHeight;
+	context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+});
 
-		send.addEventListener("click", () => {
-			let img = canvas.toDataURL("image/png");
-			let fd = new FormData();
-			fd.append("img", img);
-			fetch("http://localhost:8080/upload", {
+switchCamera.addEventListener("click", async function() {
+	shouldFaceUser = !shouldFaceUser;
+	previousStream.getTracks().forEach(t => {
+			t.stop();
+	});
+	await init();
+});
+
+send.addEventListener("click", () => {
+	let img = canvas.toDataURL("image/png");
+	let fd = new FormData();
+		fd.append("img", img);
+		fetch("http://localhost:8080/save-photo", {
 				method: "POST",
 				body: fd
-			}).then(r => r.json()).then(d => console.log(d));
+		}).then(r => r.json()).then(d => console.log(d));
 			console.log("Send");
-		})
+})

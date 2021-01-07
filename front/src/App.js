@@ -1,25 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { Welcome } from './Components/Welcome/Welcome'
+import {Login} from './Components/Login/Login'
+import { RegisterProvider } from './Contexts/RegisterContext'
+import { LoginProvider } from './Contexts/LoginContext'
+import { ExternalRegisterSuccessful } from './Components/external-register-successful/ExternalRegisterSuccessful'
+import { WelcomeUserForm } from './Components/info-user-form/WelcomeUserForm'
+import { UserFormAllergens } from './Components/info-user-form/UserFormAllergens'
+import { SignUp } from './Components/SignUp/SignUp'
+// import { Error } from './Components/Advices/Error'
+import { Dashboard } from './Components/Dashboard/Dashboard'
+import { Error } from './Components/Advices/Error'
+import { usePreferences } from './Hooks/usePreferences'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+export const App = () => {
+
+    const [registerUserInfo, setRegisterUserInfo] = useState({});
+    const [loginUserInfo, setLoginUserInfo] = useState({});
+    console.log(usePreferences())
+    
+
+    return (
+        <>
+            <Router>
+                <Switch>
+
+                    <Route exact path="/">
+                        <Welcome />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path="/guest">
+                        <Dashboard />
+                    </Route>
+
+                    <Route path="/Register">
+                        <RegisterProvider value={{...registerUserInfo, setRegisterUserInfo}}>
+                            <SignUp />
+                        </RegisterProvider>
+
+                    </Route>
+                    <Route path="/external-register-successful">
+                        <RegisterProvider value={{...registerUserInfo, setRegisterUserInfo}}>
+                            <ExternalRegisterSuccessful />
+                        </RegisterProvider>
+                    </Route>
+
+                    <Route path="/welcome-user-form">
+                        <RegisterProvider value={{...registerUserInfo, setRegisterUserInfo}}>
+                            <WelcomeUserForm />
+                        </RegisterProvider>
+                    </Route>
+                    <Route path="/user-form-allergens">
+                        <RegisterProvider value={{...registerUserInfo, setRegisterUserInfo}}>
+                            <UserFormAllergens />
+                        </RegisterProvider>
+                    </Route>
+
+                    <Route path="/login-successful">
+                        <LoginProvider value={{...loginUserInfo, setLoginUserInfo}}>
+                            <Dashboard />
+                        </LoginProvider>
+                    </Route>
+
+                    <Route path="/error/:id"></Route>
+                    <Route path="/example"><Error /></Route>
+                    
+                </Switch>
+            </Router>
+        </>
+    )
 }
-
-export default App;
