@@ -12,6 +12,10 @@ import { SignUp } from './Components/SignUp/SignUp'
 import { Dashboard } from './Components/Dashboard/Dashboard'
 import { Error } from './Components/Advices/Error'
 import { usePreferences } from './Hooks/usePreferences'
+import {Splash} from './Components/Splash/Splash'
+import Onboarding from './Components/Onboarding/Onboarding'
+import CameraTool from './Components/CameraTool/CameraTool'
+import Filter from './Components/Filter/Filter'
 
 
 
@@ -28,11 +32,15 @@ export const App = () => {
                 <Switch>
 
                     <Route exact path="/">
+                        <Splash />
+                    </Route>
+                    <Route path="/onboard">
+                        <Onboarding />
+                    </Route>
+                    <Route path="/welcome">
                         <Welcome />
                     </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
+
                     <Route path="/guest">
                         <Dashboard />
                     </Route>
@@ -68,6 +76,15 @@ export const App = () => {
 
                     <Route path="/error/:id"></Route>
                     <Route path="/example"><Error /></Route>
+
+
+                    <Route path="/camera">
+                        <CameraTool />
+                    </Route>
+
+                    <Route path="/filter">
+                        <Filter />
+                    </Route>
                     
                 </Switch>
             </Router>

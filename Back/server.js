@@ -7,6 +7,7 @@ const fetch = require("node-fetch");
 const dotenv = require ("dotenv").config();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const {spawn} = require("child_process");	
 const Port = 8080;
 
 const Facebook = require("./lib/OauthFacebook.js");
@@ -18,6 +19,7 @@ const JWT = require("./lib/JWT.js");
 const {CredentialsValidator, EmailValidator, PasswordValidator} = require("./lib/validator.js");
 const {getGoogleAuthURL, getGoogleUser} = require("./lib/OauthGoogle.js");
 const {PromiseConnectionDB} = require("./lib/ConnectionDB.js");
+const validator = require("./lib/validator.js");
 const optionsJWT = {
 	"maxAge": 1000 * 60 * 15 * 4 * 24 * 15, // would expire after 15 days		////// OPTIONS DE JWT//////
 	"httpOnly": true, // The cookie only accessible by the web server
@@ -97,14 +99,14 @@ server.get("/google-login", async (req, res) => {
                         } else {
 
                             // res.send({"res" : "2", "msg" : "User Google to fill form", userData})
-							const sql = `INSERT INTO User (name, email) VALUES (?, ?)`;
+							const sql = `INSERT INTO Users (name, email) VALUES (?, ?)`;
                             DBconnection.query(sql, [name, email], (err, result) => {
 								if (err)
 									throw err;
 								else {
 
 									const idUser = result.insertId; ///este sería el id del ultimo usuario creado
-									const sql = `INSERT INTO UserGoogle (ext_idUser,idGoogle) VALUES (?, ?)`;
+									const sql = `INSERT INTO UsersGoogle (ext_usrId,idGoogle) VALUES (?, ?)`;
 									DBconnection.query(sql, [idUser, id], (err, result) => {
 										if (err)
 											throw err;
@@ -117,15 +119,15 @@ server.get("/google-login", async (req, res) => {
 												"iat" : new Date()
 												// "ip": req.ip
 											};
-											res.cookie("jwt", JWT.generateJWT(Payload), options)
+											res.cookie("jwt", JWT.generateJWT(Payload), {httpOnly: true})
 											res.send({ "res" : "1", "msg": "New user has been created." });
 
 										}
 									});
 								}
+								DBconnection.end();
 							});
 						}
-                        DBconnection.end();
                     });
                 })
                 .catch(err => res.send({"res" : "-3", "msg" : err}))
@@ -149,27 +151,76 @@ server.get("/facebook-redirect", (req, res) => {
 
 server.get("/facebook-login", async (req, res) => {
 
-	const Token = await (facebook.getOauthToken(req.query.code, req.query.state));
-	const data = await facebook.getUserInfo(Token, ["name", "email"])
+    const Token = await (facebook.getOauthToken(req.query.code, req.query.state));
+    const data = await facebook.getUserInfo(Token, ["name", "email"])
+    
+    const {id, name, email} = data;
 
-	const { id, name, email } = userData;
+    console.log(data);
 
-	if(id && name && email){
-		const Validated = EmailValidator(email);
+    if(id && name && email){
 
-		if(Validated){
-			connection.query(`SELECT * FROM User WHERE Email ="${email}"`,(err,result)=> {
-				if(err){
-					throw error
-				}
-			})
-		}
-	
-	
-		console.log("facebook data: ", data);
+        let Validated = validator.EmailValidator(email);
 
-	}
+        if(Validated){
+            PromiseConnectionDB()
+            .then((DBconnection) => {
+                const sql = "SELECT * FROM users U INNER JOIN UsersFacebook UF ON UF.ext_usrid = U.usrid WHERE email = ? OR idFacebook = ?"; 
+                DBconnection.query(sql, [email, id], (err, result) => {
 
+                    if (err){
+                        res.redirect(`${process.env.FRONT_URL}/error/-2`)
+                    } else if (result.length){
+
+                            //Generate JWT
+                            const Payload = {
+                                "usrid" : result[0].usrid,
+                                "name" : result[0].name,
+                                "email" : result[0].email,
+                                "iat" : new Date()
+                            };
+
+                            //COMPLETAR con resto de datos pedidos
+
+                            const jwt = JWT.generateJWT(Payload);
+                            const jwtVerified = JWT.verifyJWT(jwt);
+
+                            if(jwtVerified){
+
+                                //Access as administrator
+                            res.cookie("JWT", jwt, {"httpOnly" : true})
+                            res.redirect(`${process.env.FRONT_URL}/login-successful`)
+
+                            } else {
+                                res.redirect(`${process.env.FRONT_URL}/error/-1`)
+                            }
+                            
+                    } else {
+
+                        const Payload = {
+                            "usrid" : id,
+                            "name" : name,
+                            "email" : email,
+                            "provider" : "facebook"
+                        };
+
+                        const jwt = JWT.generateJWT(Payload);
+
+                        res.cookie("Oauth", jwt, {"httpOnly" : true});
+                        // res.send({"res" : "2", "msg" : "User facebook to fill form", data});
+                        res.redirect(`${process.env.FRONT_URL}/external-register-successful`);
+                    }
+                    DBconnection.end();
+                });
+            })
+            .catch(() => res.redirect(`${process.env.FRONT_URL}/error/-3`))
+            
+        } else {
+            res.redirect(`${process.env.FRONT_URL}/error/-4`)
+        }
+    } else {
+        res.redirect(`${process.env.FRONT_URL}/error/-5`)
+    }
 });
 
 server.get("/get-mask-dashboard", (req, res) => {
@@ -190,6 +241,8 @@ server.get("/get-mask-dashboard", (req, res) => {
 	})
 	.catch(e => res.send({"res" : "-2", "msg" : "error in database", e}));
 });
+
+//COMPROBAR CON MA
 
 server.get("/get-mask-by-filters", (req, res) => {
 
@@ -221,6 +274,9 @@ server.get("/get-mask-by-filters", (req, res) => {
 		res.send({"res" : "-3", "msg" : "no req.query"})	
 	}			
 });
+
+// no req.query
+
 
 server.get("/get-mask-detail", (req, res) => {
 
@@ -432,16 +488,31 @@ server.post("/login", (req, res) => {
 	}
 });
 
+function getDate() {
+	return "mask";
+}
+
 server.post("/save-photo", upload.none(), (req, res) => {
 
 	const {img} = req.body;
 	
-    let base64Data = img.replace(/^data:image\/png;base64,/, "");
-    fs.writeFile(`public/imgs/${getDate()}.png`, base64Data, "base64", err => {
+	let base64Data = img.replace(/^data:image\/png;base64,/, "");
+	let imgPath = `public/imgs/${getDate()}.png`;
+    fs.writeFile(imgPath, base64Data, "base64", err => {
 		if(err)
 			res.send({"res" : "-1", "msg" : "writefile failed"});
 		else {
-			res.send({"res" : "1", "msg" : "writefile correctly"});
+			/*
+				Ejecutar el script de python y el resultado mandarlo a front
+			*/
+			getMaskData(__dirname + "/" + imgPath).then(data => {
+				res.send({"res": "1", data});
+				/*Enviarselos a front */
+			}).catch(e => {
+				console.log(e);
+				res.send({"res": "-2", "msg": "Can not read mask data"});
+				/* Enviar a fornt que hay un error */
+			});
 		}
 	});
 });
@@ -515,7 +586,7 @@ server.put("/change-user-name", (req, res) => {
 
 ///////// PYTHON ////////////
 
-const {spawn} = require("child_process");
+// const {spawn} = require("child_process");
 
 function getMaskData(url) {
     return new Promise((resolve, reject) => {
@@ -533,7 +604,9 @@ function getMaskData(url) {
     });
 }
 
-getMaskData(__dirname + "/public/imgs/noffpp22.jpg").then(data => console.log(data)).catch(e => console.log(e));
+// 
+
+
 
 
 

@@ -1,10 +1,10 @@
 const crypto = require("crypto");
 const fetch = require("node-fetch");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv").config({path: "../"});
 
-const CLIENT_ID = process.env.ID_FACEBOOK;
-const CLIENT_SECRET = process.env.SECRET_FACEBOOK;
-const REDIRECT_URI = "http://localhost:8080/loginFB";
+const CLIENT_ID = process.env.FACEBOOK_ID;
+const CLIENT_SECRET = process.env.FACEBOOK_SECRET;
+const REDIRECT_URI = "http://localhost:8080/facebook-login";
 const SCOPES = ["email"];
 
 class facebook {
@@ -23,7 +23,7 @@ class facebook {
         this.states.push(state);
         return (`https://www.facebook.com/v9.0/dialog/oauth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${state}&scope=${SCOPES.join(",")}`);
     }
-
+    
     getOauthToken(code, state) {
         return new Promise((resolve) => {
             const statePosition = this.states.findIndex(State => State === state);

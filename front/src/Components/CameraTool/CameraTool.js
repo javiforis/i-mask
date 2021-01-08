@@ -1,31 +1,105 @@
-import React, { useState, useContext } from 'react';
-import { useForm } from '../../Hooks/useForm';
-import { Fetch } from '../../Hooks/useFetch';
-import { useRedirect } from '../../Hooks/useRedirect';
-import { useValidator } from '../../Hooks/useValidator';
-import { LoginContext } from '../../Contexts/LoginContext';
-import LoginCss from './Login.module.css';
+import React, { useState, useRef, useEffect } from 'react';
+import Quagga from "quagga";
+import Onboarding from '../Onboarding/Onboarding';
+
+export const CameraTool = () => {
+  const video = useRef();
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const [img, setImg] = useState(false);
 
 
-
-
-function uploadImage() {
-    const ref = firebase.storage().ref();
-    const file = document.querySelector("#photo").files[0];
-    const name = +new Date() + "-" + file.name;
-    const metadata = {
-      contentType: file.type
-    };
-    const task = ref.child(name).put(file, metadata);
-    task
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        console.log(url);
-        document.querySelector("#image").src = url;
-      })
-      .catch(console.error);
+  useEffect(() => {
+    Quagga.init({
+      inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        target: video.current
+      }
+    }, (error) => {
+      if (error)
+        throw error;
+    })
+  }, []);
+  
+  const captureImg = () => {
+    let img = video.current.children[0];
+      console.log(img);
+    video.current.children[1].getContext("2d").drawImage(img, 0, 0);
+    setImg(true);
   }
 
+  const sendImg = () => {
+    setIsLoading(true);
+    let img = video.current.children[1].toDataURL("img/png");
+  	let fd = new FormData();
+		fd.append("img", img);
+		fetch("http://localhost:8080/save-photo", {
+				method: "POST",
+				body: fd
+		}).then(r => r.json()).then(d => {
+      if (d.data)
+        setData(d);
+      else
+        setError("There is an error");
+      setIsLoading(false);
+    }).catch(e => {
+      setError(e);
+      setIsLoading(false);
+    });
+			console.log("Send");
+  }
 
-<input type="file" id="photo" />
-    <button onclick="uploadImage()">Upload Image</button>
+  const retry = () => {
+    setImg(false);
+    let canvas = video.current.children[1];
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  const renderButtons = () => {
+    if (img)
+      return (
+        <>
+          <button onClick={retry}>Volver a capturar foto</button>
+          <button onClick={sendImg}>Enviar foto</button>
+        </>
+      )
+    else 
+        return (
+          <button onClick={captureImg}>Capturar foto</button>
+        )
+  }
+
+  if (!data && !isLoading && !error)
+  {
+    return (
+      <div>
+        <div ref={video}></div>
+        {renderButtons()}
+      </div>
+
+    );
+  }
+  else if (isLoading) {
+    return (
+      <p>Is loading</p>
+    )
+  }
+  else if (error) {
+    return (
+      <p>{error}</p>
+    )
+  }
+  else {
+    console.log(data);
+    return (
+      <Onboarding/>
+    )
+  }
+      
+
+}
+
+export default CameraTool;
