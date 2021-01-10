@@ -15,7 +15,7 @@ import { usePreferences } from './Hooks/usePreferences'
 import {Splash} from './Components/Splash/Splash'
 import Onboarding from './Components/Onboarding/Onboarding'
 import CameraTool from './Components/CameraTool/CameraTool'
-import Filter from './Components/Filter/Filter'
+// import Filter from './Components/Filter/Filter'
 
 
 
@@ -79,11 +79,13 @@ export const App = () => {
 
 
                     <Route path="/camera">
+                        {/* Aqui se pueden poner divs con classnames */}
                         <CameraTool />
+                        {/* <NavBar/> */}
                     </Route>
 
                     <Route path="/filter">
-                        <Filter />
+                        {/* <Filter /> */}
                     </Route>
                     
                 </Switch>
