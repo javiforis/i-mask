@@ -11,10 +11,11 @@ import { SignUp } from './Components/SignUp/SignUp'
 // import { Error } from './Components/Advices/Error'
 import { Dashboard } from './Components/Dashboard/Dashboard'
 import { Error } from './Components/Advices/Error'
-import { usePreferences } from './Hooks/usePreferences'
 import {Splash} from './Components/Splash/Splash'
 import Onboarding from './Components/Onboarding/Onboarding'
 import CameraTool from './Components/CameraTool/CameraTool'
+import { Filter } from './Components/Filter/Filter'
+import { MaskList } from './Components/MaskList/MaskList'
 // import Filter from './Components/Filter/Filter'
 
 
@@ -23,14 +24,18 @@ export const App = () => {
 
     const [registerUserInfo, setRegisterUserInfo] = useState({});
     const [loginUserInfo, setLoginUserInfo] = useState({});
-    console.log(usePreferences())
+    
     
 
     return (
         <>
+        
+                        {/* <Filter /> */}
             <Router>
                 <Switch>
-
+                    <Route exact path="/MaskList">
+                        <MaskList/>
+                    </Route>
                     <Route exact path="/">
                         <Splash />
                     </Route>
@@ -75,7 +80,7 @@ export const App = () => {
                     </Route>
 
                     <Route path="/error/:id"></Route>
-                    <Route path="/example"><Error /></Route>
+                    
 
 
                     <Route path="/camera">

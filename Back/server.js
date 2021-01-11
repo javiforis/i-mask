@@ -32,7 +32,7 @@ server.use(bodyParser.urlencoded({"extended":false}));
 server.use(bodyParser.json());
 server.use(cookieParser());
 server.use(myPublicFiles);
-server.use(cors());
+server.use(cors({origin: process.env.FRONT_URL, credentials: true}));
 // server.use(express.static(__dirname + "/public"));
 // server.use(bodyParser.urlencoded({extended: true}));
 
