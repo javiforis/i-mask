@@ -45,8 +45,8 @@ export const MaskList = () => {
             <div className={MaskListCss.Title}>
             <h1>Mascarillas</h1>
             </div>
-            { showBack && !showFilter && <button onClick={goBack}>
-                Atrás
+            { showBack && !showFilter && <button className={MaskListCss.goBack} onClick={goBack}>
+                <img src="goBack-logo.svg" className={MaskListCss.goBack} alt="back"></img>
             </button>}
             {
                 showFilter && <Filter Filters={Filters} setFilters={applyFilters}/> 

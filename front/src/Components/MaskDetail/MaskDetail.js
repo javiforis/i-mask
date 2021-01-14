@@ -61,25 +61,29 @@ export const MaskDetail = (props) => {
     )
     return (
         <>
-        <div>
-            <button onClick={() => {goBack("/mask-list")}}>
-            Atrás
-            </button>
-            <div>
-                <img alt="mask"></img>
-            </div>
+            <div className={MaskDetailCss.bigContainer}>
+                <button className={MaskDetailCss.backBtn}onClick={() => {goBack("/mask-list")}}>
+                    <img src="/goBack-logo.svg" className={MaskDetailCss.goBack} alt="back"></img>
+                </button>
+                <div>
+                    <img className={MaskDetailCss.bigMask} src="/generic-mask.svg" alt="mask"></img>
+                </div>
             <div>
             {
             results && results.map(data => {
                 
                 return (
-                    <div key={data.id}>
-                    <p>{data.type}</p>
-                    <p>{data.reusable}</p>
-                    <p>Certificado: {data.certificate}</p>
-                    <p>Eficacia: {data.effectiveness}</p>
-                    <button onClick={() => Redirect("/info")}>Info</button>
+                    <>
+                    <div className={MaskDetailCss.Container} key={data.id}>
+                    <p className={MaskDetailCss.Type}>{data.type}</p>
+                    <p className={MaskDetailCss.Reut}>{data.reusable ? "Reutilizable" : "No reutilizable"}</p>
+                    <p className={MaskDetailCss.Certif}>Certificado: </p>
+                    <p className={MaskDetailCss.Certif2}>{data.certificate}</p>
+                    <p className={MaskDetailCss.Effect}>Eficacia: </p>
+                    <p className={MaskDetailCss.Effect2}>{data.effectiveness} %</p>
+                    <button className={MaskDetailCss.infoBtn} onClick={() => Redirect("/info")}><img src="/infoBtn-logo.svg"alt="info"></img></button>
                     </div>
+                    </>
                 )
             })
             }

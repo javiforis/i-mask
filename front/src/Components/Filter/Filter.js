@@ -16,19 +16,23 @@ export const Filter = (props) => {
             <div className={FilterCss.container}>
                 <div className={FilterCss.filters}>
                     <div className={filter.respiratory ? FilterCss.Activated: ""} onClick={() => toogle("respiratory")}>
-                        <img src="" alt="pesado"></img>
-                        <p>Insuficiencia respiratoria</p>
-                        {filter.respiratory && <img src="/check-icon.svg" alt="check"></img>}
+                        <img className={FilterCss.respiratoryLogo} src="/respiratory-logo.svg" alt="respiratory"></img>
+                        <p className={FilterCss.respiratoryText}>Insuficiencia respiratoria</p>
+                        {filter.respiratory && <img className={FilterCss.checkIcon}src="/check-icon.svg" alt="check"></img>}
                     </div>
-                    <div onClick={() => toogle("children")}>
-                        {filter.children ? "Está activado": "Está desactivado"}
+                    <div className={filter.children ? FilterCss.Activated: ""}onClick={() => toogle("children")}>
+                    <img className={FilterCss.childrenLogo} src="/children-logo.svg" alt="children"></img>
+                        <p className={FilterCss.childrenText}>Infantil</p>
+                        {filter.children && <img className={FilterCss.checkIcon}src="/check-icon.svg" alt="check"></img>}
                     </div>
-                        <div onClick={() => toogle("sport")}>
-                        {filter.sport ? "Está activado": "Está desactivado"}
+                        <div className={filter.sport ? FilterCss.Activated: ""}onClick={() => toogle("sport")}>
+                        <img className={FilterCss.sportLogo} src="/sport-logo.svg" alt="sport"></img>
+                        <p className={FilterCss.sportText}>Deportes</p>
+                        {filter.sport && <img className={FilterCss.checkIcon} src="/check-icon.svg" alt="check"></img>}
                     </div>
                 <div>
-                    <button onClick={applyFilters}>
-                Aplicar filtro
+                    <button className={FilterCss.FilterBtn}onClick={applyFilters}>
+                Aplicar filtros
                     </button>
                     </div>
                 </div>

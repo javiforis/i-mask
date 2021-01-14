@@ -19,12 +19,12 @@
     margin-left: 280px;
     border: none;
     background-color: transparent;
+    z-index: 9999999999999999999999999999;
 }
 .BigContainer {
     position: relative;
     margin-top: 60px;
     padding: 30px;
-    z-index: -999;
 }
 .GenericImage {
     position: absolute;
@@ -63,4 +63,8 @@
     margin-top: 85px;
     margin-left: 160px;
     color: #B6C5D1;
+}
+.goBack {
+    border: none;
+    margin-top: 5px;
 }

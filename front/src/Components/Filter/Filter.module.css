@@ -16,5 +16,62 @@
         /* y todo tu css */
 }
 .Activated {
-    background: green;
+    background: #c5f0eb;
+    border-radius: 8px;
+
+}
+
+.respiratoryLogo {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 40px;
+}
+.childrenLogo {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 40px;
+}
+
+.sportLogo {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 40px;
+}
+.FilterBtn {
+        position:relative;
+        border-radius: 8px;
+        border: none;
+        width: 280px;
+        height: 52px;
+        color: white;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
+    
+}
+.checkIcon {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 20px;
+}
+.sportText {
+    position: absolute;
+    margin-left: 80px;
+    margin-top: -35px;
+}
+.childrenText {
+    position: absolute;
+    margin-left: 80px;
+    margin-top: -35px;
+
+}
+.respiratoryText {
+    position: absolute;
+    margin-left: 80px;
+    margin-top: -35px;
+
 }

@@ -1,0 +1,92 @@
+.Type {
+    font-family: "display-bold";
+    color: #132968;
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 35px;
+    font-size: 23px;
+
+}
+.backBtn {
+    border: none;
+    z-index: 999999;
+    background-color: transparent;
+}
+.infoBtn {
+    border: none;
+    position: absolute;
+    margin-left: 210px;
+    margin-top: 130px;
+}
+.Reut {
+    font-family: "display-bold";
+    color: #132968;
+    font-size: 23px;
+    position:absolute;
+    margin-top: 30px;
+    margin-left: 140px;
+
+}
+.Certif {
+    position: absolute;
+    font-family: "display-regular";
+    font-size: 18px;
+    color: #132968;
+    margin-top: 90px;
+    margin-left: 30px;
+
+}
+.Effect {
+    position: absolute;
+    font-family: "display-regular";
+    font-size: 18px;
+    color: #B6C5D1;
+    margin-top: 130px;
+    margin-left: 30px;
+}
+.Container {
+    border-radius: 30px;
+    position: absolute;
+    width: 320px;
+    height: 220px;
+    margin-top: 247px;
+    background-color: white;
+    z-index: 99999999;
+}
+.bigMask {
+    position: absolute;
+    width: 250px;
+    margin-top: 20px;
+    margin-left: 40px;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 2s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.bigContainer {
+    position: absolute;
+    background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
+    width: 100vw;
+    height: 100vh;
+}
+.Certif2 {
+    color: #00CACE;
+    font-family: "display-bold";
+    position: absolute;
+    margin-top: 92px;
+    margin-left: 130px;
+}
+.Effect2 {
+    position: absolute;
+    font-family: "display-bold";
+    color: #132968;
+    margin-top: 130px;
+    margin-left: 100px;
+}

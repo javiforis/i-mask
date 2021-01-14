@@ -6,27 +6,28 @@ export const Advices = () => {
     const Redirect = useRedirect();
     return (
         <>
+            <h4 className={AdvicesCss.Title}>Consejos</h4>
+
             <div className={AdvicesCss.Container}>
-                <h4 className={AdvicesCss.Title}>Consejos</h4>
-                <div className={AdvicesCss.FirstAdvice}>
-                    <button className={AdvicesCss.FirstButton} onClick={() => Redirect("/FirstAdviceDetail")}>
-                        ¿Qué hacer si te sientes mal?
-                    </button>
+
+                <div className={AdvicesCss.FirstAdvice} onClick={() => Redirect("/First-advice-detail")}>
+                    <img className={AdvicesCss.FirstIcon}src="/advice-icon.svg"alt=""></img>
+                    <p className={AdvicesCss.FirstAdviceText}>¿Qué hacer si te sientes mal?</p>
                 </div>
-                <div className={AdvicesCss.SecondAdvice}>
-                    <button className={AdvicesCss.SecondButton} onClick={() => Redirect("/SecondAdviceDetail")}>
-                        Normas básicas de higiene
-                    </button>
+
+                <div className={AdvicesCss.SecondAdvice} onClick={() => Redirect("/Second-advice-detail")}>
+                    <img className={AdvicesCss.SecondIcon} src="/advice-icon.svg"alt=""></img>
+                    <p className={AdvicesCss.SecondAdviceText}>Normas básicas de higiene</p> 
                 </div>
+
                 <div className={AdvicesCss.ThirdAdvice}>
-                    <button className={AdvicesCss.ThirdButton}>
-                        ¿Cómo reforzar la seguridad de tu entorno?
-                    </button>
+                    <img className={AdvicesCss.ThirdIcon}src="/advice-icon.svg"alt=""></img>
+                    <p className={AdvicesCss.ThirdAdviceText}>¿Cómo reforzar la seguridad de tu entorno?</p>  
                 </div>
+
                 <div className={AdvicesCss.FourthAdvice}>
-                    <button className={AdvicesCss.FourthButton}>
-                        ¿Cómo lidiar con el estrés?
-                    </button>
+                    <img className={AdvicesCss.FourthIcon}src="/advice-icon.svg"alt=""></img>
+                    <p className={AdvicesCss.FourthAdviceText}>¿Cómo lidiar con el estrés?</p>
                 </div>
             </div>
         </>
