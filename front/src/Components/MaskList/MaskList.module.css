@@ -1,0 +1,80 @@
+/* @font-face {
+    font-family: 'display-regular';
+    src: url(Display-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'display-bold';
+    src: "Display-Bold.ttf";
+    font-style: normal;
+    font-weight: bold;
+} */
+
+.Container {
+    overflow: hidden;
+    width: 100%;
+    height: 75px;
+}
+.Title {
+    font-family: display-bold;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    margin-top: 30px;
+    margin-left: 80px;
+    color: #132968;
+}
+.Filter {
+    position: fixed;
+    top: 0;
+    margin-top: 10px;
+    margin-left: 280px;
+    border: none;
+    background-color: transparent;
+}
+.BigContainer {
+    position: relative;
+    margin-top: 60px;
+    padding: 30px;
+    z-index: -999;
+}
+.GenericImage {
+    position: absolute;
+    margin-top: 35px;
+    margin-left: -10px;
+}
+.Name {
+    font-family: display-bold;
+    font-weight: bold;
+    position: absolute;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 80px;
+    color: #0D3F67;
+}
+.Type {
+    font-family: display-regular;
+    font-weight: normal;
+    position: absolute;
+    margin-left: 84px;
+    margin-top: 85px;
+    color: #B6C5D1;
+}
+.Certificate {
+    font-family: display-regular;
+    font-weight: normal;
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 90px;
+    color: #00CACE;
+}
+.Reusable {
+    font-family: display-regular;
+    font-weight: normal;
+    position: absolute;
+    margin-top: 85px;
+    margin-left: 160px;
+    color: #B6C5D1;
+}

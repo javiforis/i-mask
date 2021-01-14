@@ -1,66 +1,33 @@
-import React ,{ useContext, useState } from 'react';
-import HoverImage from "react-hover-image";
-import Homelogo from '../../public/Home.png';
-import HomelogoG from '../../public/HomeG.png';
-import Favlogo from '../../public/Fav.png';
-import FavlogoG from '../../public/FavG.png';
-import Proflogo from '../../public/Prof.png';
-import ProflogoG from '../../public/ProfG.png';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-  } from "react-router-dom";
-import { Advices } from '../Advices/Advices';
-import { Profile } from '../Profile/Profile';
-import UserContext from '../../Contexts/userContext';
-import { Filter } from '../Filter/Filter';
-import NavBarCss from './NavBar.module.css'
+import React  from 'react';
+import NavBarCss from './NavBar.module.css';
 
 
+
+import {useRedirect} from '../../Hooks/useRedirect';
 
 export const NavBar = () => {
-  const { userInfo } = useContext(UserContext);
- 
+  
+  const redirect = useRedirect();
     return(
-      <Router>
-      <div className="Bottom">
-          <div className= "Filter">
-            <Link to="/Filter" >
-            <HoverImage className="HomeLogo" src={Homelogo} hoverSrc={HomelogoG}  alt={"logoG"} />
-            </Link > 
+      
+      <div className={NavBarCss.Bottom}>
+          <div onClick={()=>redirect("/Mask-list")}>
+            <img className={NavBarCss.HomeLogo} src="/home-logo.svg" alt="home"></img>
           </div>
-          <div className ="Advices">
-            <Link to="/Advices">
-            <HoverImage className="FavLogo" src={Favlogo} hoverSrc={FavlogoG}  alt={"logofavG"} />
-            </Link >
-          </div>    
-          <div className ="Profile">
-            
-            <Link  to={userInfo ? "/profile" : "/signup"}>
-            <HoverImage className="ProfLogo" src={Proflogo} hoverSrc={ProflogoG}  alt={"ProfG"} />
-            </Link >
+
+          <div onClick={()=>redirect("/Advices")}>
+            <img className={NavBarCss.AdvicesLogo} src="/advices-logo.svg" alt="adv"></img>
+          </div> 
+
+          <div onClick={()=>redirect("/profile")}>
+            <img className={NavBarCss.ProfileLogo} src="/profile-logo.svg" alt="prof"></img>
           </div>
-            
-            
-        <Switch>
 
-          <Route exact path="/">
-          </Route>
-          <Route path="/favs" >
-            {/* <About /> */}
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path ="/profile">
-            <Profile />
-          </Route>
-
-        </Switch>
+          <div onClick={()=>redirect( "/Camera")}>
+            <img className={NavBarCss.CameraLogo} src="/camera-logo.svg" alt="cam"></img>
+          </div>
       </div>
-    </Router>
     )
       
 }
+

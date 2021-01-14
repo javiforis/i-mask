@@ -7,26 +7,68 @@
 }
 
 .Button {
+    position: absolute;
     border-radius: 8px;
+    border: none;
     width: 280px;
     height: 52px;
     color: #132968;
     font-size: 14px;
+    margin-top: 400px;
+    margin-left: 20px;
+    background: linear-gradient(94.94deg, #A0C6FF -64.71%, rgba(255, 255, 255, 0) 107.07%), #FFFFFF;
 }
 
-/* .logo {
-    position: fixed;
-    left: 0%;
-    right: 0%;
-    top: 12.7%;
-    bottom: 15.68%;
-} */
-
 .text {
+    position: absolute;
     font-size: 24px;
     size: 20px;
     align-items: center;
     text-align: center;
     color: white;
+    margin-top: 100px;
+    padding: 20px;
 
+}
+
+.TopLogo {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 57px;
+    width: 200px;
+}
+.infologo {
+    position: absolute;
+    margin-top: 90px;
+    margin-left: 85px;
+}
+.text2 {
+    position: absolute;
+    font-size: 24px;
+    size: 20px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-top: 250px;
+    padding: 20px;
+}
+.text3 {
+    position: absolute;
+    font-size: 24px;
+    size: 20px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+    padding: 20px;
+}
+.clocklogo {
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 98px;
+}
+.masklogo {
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 90px;
 }

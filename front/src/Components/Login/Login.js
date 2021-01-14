@@ -8,7 +8,6 @@ import LoginCss from './Login.module.css';
 
 
 
-
 export const Login = () => {
 
     const Redirect = useRedirect();
@@ -17,8 +16,8 @@ export const Login = () => {
     const {validateCredentials, validateEmail, validatePsw} = useValidator();
 
     const [formValues, handleInputChange, isValid] = useForm(
-        {email : "", psw : ""},
-        {email : validateEmail, psw : validatePsw}
+        {email : "", password : ""},
+        {email : validateEmail, password : validatePsw}
     );
     
         
@@ -30,7 +29,7 @@ export const Login = () => {
 
     const [Error, setError] = useState(null)
 
-    let {email, psw} = formValues;
+    let {email, password} = formValues;
     const {type, placeholder} = statePsw;
 
     const HandlePswVisibility = (e) => {
@@ -48,7 +47,7 @@ export const Login = () => {
 
         e.preventDefault();
 
-        if(!validateCredentials(email, psw) || (email && psw)){
+        if(validateCredentials(email, password)){
 
             Fetch(`${process.env.REACT_APP_backUrl}/login`, {method : "post", data : {...formValues}})
             .then(data => {
@@ -62,7 +61,7 @@ export const Login = () => {
                             break;
                         case "1" :
                             Login.setLoginUserInfo(result);
-                            Redirect("/home");
+                            Redirect("/Mask-list");
                             break;
                         case "-1" :
                             setError("-1")
@@ -118,7 +117,7 @@ export const Login = () => {
                     </div>
         } 
         
-        if(Error === "-4" || !isValid.email || !isValid.psw){
+        if(Error === "-4" || !isValid.email || !isValid.password){
             return <div className={LoginCss.ErrorInCredentials}>
                         <p>El email o contraseña que has introducido no son correctos, recuerda que deben ser:</p>
                         <ul className={LoginCss.ErrorInCredentialsList}>
@@ -142,36 +141,38 @@ export const Login = () => {
     return (
         <>
             <div className={LoginCss.mainContainer}>
-                <img src="../../background.jpg" alt="Background" className={LoginCss.BG} />
-                <div className={LoginCss.gradientBG}></div>
+                <img src="login-logo.svg" alt="Background" className={LoginCss.LoginLogo} />
             </div>
             <form onSubmit={handleSubmit} className={LoginCss.loginForm}>
-                <h1 className={LoginCss.titleLogin}>Iniciar sesión</h1>
-
-                <label>Tu email</label>
-                <input 
+                <h1 className={LoginCss.titleLogin}>¡Bienvenido <br></br>a iMask!</h1>
+                <p className={LoginCss.titleEmail}>Email</p>
+                
+                <label></label>
+                <input className={LoginCss.inputEmail}
                     id="email"
                     type="text"
                     name="email"
-                    placeholder="example@gmail.com"
+                    placeholder="youza@medix.com"
                     autoComplete="off"
                     value={email}
                     onChange={handleInputChange}
-                    className={!isValid.email ? LoginCss.ErrorInput : ""}/>
+                    />
                 <i id={LoginCss.envelope} className="far fa-envelope"></i>   
-                
-                <label>Tu contraseña</label>
-                <input 
-                    id="psw"
+                <img className={LoginCss.eyeIcon} src="eye-icon.svg" alt="eye-icon"></img>
+                <p className={LoginCss.titlePassword}>Contraseña</p>
+                <label></label>
+                <input className={LoginCss.inputPsw}
+                    id="password"
                     type={type}
-                    name="psw"
+                    name="password"
                     placeholder={placeholder}
                     autoComplete="off"
-                    value={psw}
+                    value={password}
                     onChange={handleInputChange}
-                    className={!isValid.psw ? LoginCss.ErrorInput : ""} />
+                    />
 
                 <i id={LoginCss.key} className="fas fa-key"></i>
+                <img className={LoginCss.checkIcon} src="check-icon.svg" alt="eye-icon"></img>
                 <i id={LoginCss.eye} className={type === "password" ? "fas fa-eye-slash" : "fas fa-eye"} onClick={HandlePswVisibility}></i>
                 {showCredentialsError()}
 
@@ -179,6 +180,13 @@ export const Login = () => {
                 <button type="button" className={LoginCss.forgotPsw} onClick={(e) => Redirect("/change-password", e)}>¿Has olvidado tu contraseña?</button>
                 {/* <button className={LoginCss.backBtn} onClick={() => {redirect("/")}}>&lt;</button> */}
             </form>
+            <p className={LoginCss.ConnectSocial}>Connect with your social account</p>
+            <button onClick={(e) => Redirect(`${process.env.REACT_APP_backUrl}/facebook-redirect`, e, true)}>
+                <img className={LoginCss.facebook} src="facebook-icon.svg" alt="facebookicon"></img>
+            </button>
+            <button onClick={(e) => Redirect(`${process.env.REACT_APP_backUrl}/google-redirect`, e, true)}>
+                <img className={LoginCss.google} src="google-icon.svg" alt="googleicon"></img>
+            </button>
         </>
     )
 }

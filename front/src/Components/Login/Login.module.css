@@ -1,80 +1,5 @@
-.mainContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.BG{
-    position: absolute;
-    width: 1000px;
-    height: 100%;
-    transform: translate(0px, 240px);
-    z-index: -2;
-}
-
-.gradientBG{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    background: linear-gradient(179.58deg, rgba(255, 255, 255, 0) 21.14%, #FFFFFF 75.62%), linear-gradient(180deg, rgba(227, 249, 166, 0) 36.22%, #E3F9A6 66.93%);
-    z-index: -1;
-}
-
-.loginForm{
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    margin-top: 260px;
-}
-
-.titleLogin{
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-    color: #188161;
-}
-
-label{
-    font-family: Lato;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 140%;
-    color: #188161;
-    margin-bottom: 10px;
-}
-
-input{
-    background: #FDFFFA;
-    border: 1px solid #188161;
-    padding: 15px 15px 15px 47px;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    outline: none;
-    font-size: 17px;
-    color:#ff9101;
-    
-}::placeholder{
-    font-size: 17px;
-    letter-spacing: 1px;
-    color:#ff9101;
-}
-
-/* Question como accedo al placeholder solo del email o del psw */
-
-.ErrorInput{
-    background: #e2080844;
-    border: 1px solid #8d1818;
-    color: #ff0000;
-    
-}
-
 .ErrorInCredentials{
-    color: #ff0000;
+    color: #132968;
     background: #e208082f;
     border: 1px solid #8d1818;
     box-shadow: 0px 6px 20px rgba(241, 21, 21, 0.25);
@@ -93,10 +18,10 @@ input{
 }
 
 .WarningInCredentials{
-    color: #188161;
-    background: #f9fd052f;
-    border: 1px solid #188161;
-    box-shadow: 0px 6px 20px rgba(226, 241, 21, 0.25);
+    color: #132968;
+    background: #8ea6e7;
+    border: 1px solid #132968;
+    box-shadow: 0px 6px 20px rgba(102, 122, 168, 0.25);
     border-radius: 8px;
     padding: 5px 20px 5px 20px;
     font-family: Lato;
@@ -113,77 +38,143 @@ input{
     transform: translateX(-20px);
     text-align: left;
 }
- 
-#envelope{
-    position: absolute;
-    margin-top: 106px;
-    margin-left: 15px;
-    font-size: 20px;
-    color: #188161;
-}
-#key{
-    position: absolute;
-    margin-top: 199px;
-    margin-left: 15px;
-    font-size: 20px;
-    color: #188161;
-}
-
-#eye{
-    position: absolute;
-    margin-top: 199px;
-    margin-left: 300px;
-    font-size: 20px;
-    color: #188161;
-}
-
-.RegisterBtn{
-    align-self: center;
-    background: #FFB758;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 26px;
-    border: none;
-    outline: none;
-    padding: 10px 80px;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
-    color: #188161;
-    margin: 0px 0px 10px 0px;  
-}
-
-
-.loginBtn{
-    align-self: center;
-    background: #FFB758;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 26px;
-    border: none;
-    outline: none;
-    padding: 10px 117px;
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
-    color: #188161;
-    margin-top: 15px;  
-}
-
-.forgotPsw{
-    color: #F87E0D;
+/* Esto es lo que pone tu email y tu contraseña */
+label{
     font-family: Lato;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 140%;
+    color: #132968;
+    margin-bottom: 10px;
+}
+/* Esto son los agujeros para meter usuario y psw */
+input{
+}::placeholder{
+    font-size: 14px;
+    letter-spacing: 1px;
+    color:#132968;
+}
+.ErrorInput{
+    background: #8da7f0;
+    border: 1px solid #292b8d;
+    color: #ffffff;
+    
+}
+
+
+.forgotPsw{
+    position: absolute;
+    color: #132968;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
     letter-spacing: 0.01em;
     line-height: 140%;
-    margin-top: 10px;
+    margin-top: 390px;
+    margin-left: 82px;
     text-decoration: none;
     text-align: center;
     background: none;
     border: none;
     outline: none;
+}
+.loginBtn {
+    position:absolute;
+    border-radius: 8px;
+    border: none;
+    width: 280px;
+    height: 52px;
+    color: white;
+    font-size: 14px;
+    margin-top: 320px;
+    margin-left: 20px;
+    background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
+}
+.titleEmail {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 20px;
+    font-size: 12px;
+
+}
+.titlePassword {
+    position: absolute;
+    margin-top: 255px;
+    margin-left: 20px;
+    font-size: 12px;
+
+}
+.eyeIcon {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 270px;
+    width: 30px;
+
+}
+.checkIcon {
+    position: absolute;
+    margin-top: 255px;
+    margin-left: 270px;
+    width: 30px;
+
+}
+.ConnectSocial {
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 50px;
+    color: #B6C5D1;
+
+}
+.facebook {
+    position: absolute;
+    border: none;
+    margin-top: 480px;
+    margin-left: 90px;
+    width: 30px;
+
+}
+.google {
+    position: absolute;
+    border: none;
+    margin-top: 480px;
+    margin-left: 170px;
+    width: 30px;
+
+}
+.LoginLogo {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 60px;
+}
+.titleLogin {
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 8px;
+    font-size: 40px;
+}
+.inputEmail {
+    position: absolute;
+    background: transparent;
+    border: none;
+    padding: 15px 15px 15px 47px;
+    margin-top: 205px;
+    margin-left: -25px;
+    outline: none;
+    font-size: 17px;
+    color:#132968;
+    
+}
+.inputPsw {
+    position: absolute;
+    background: transparent;
+    border: none;
+    padding: 15px 15px 15px 47px;
+    margin-top: 265px;
+    margin-left: -27px;
+    outline: none;
+    font-size: 17px;
+    color:#132968;
 }

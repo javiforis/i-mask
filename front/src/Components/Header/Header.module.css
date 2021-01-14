@@ -1,0 +1,11 @@
+.Header {
+    position: sticky;
+    height: 42px;
+    top: 0;
+    background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
+}
+.Logo {
+    position: absolute;
+    padding: 10px;
+    margin-left: 20px;
+}

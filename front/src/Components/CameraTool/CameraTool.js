@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import Quagga from "quagga";
-import Onboarding from '../Onboarding/Onboarding';
+import { ProductContext } from '../../Contexts/ProductContext';
+import { Redirect } from 'react-router-dom';
 
 export const CameraTool = () => {
   const video = useRef();
@@ -10,7 +11,7 @@ export const CameraTool = () => {
 
   const [img, setImg] = useState(false);
 
-
+  const { setProducts } = useContext(ProductContext)
   useEffect(() => {
     Quagga.init({
       inputStream: {
@@ -93,9 +94,10 @@ export const CameraTool = () => {
     )
   }
   else {
+    setProducts(data.data)
     console.log(data);
     return (
-      <Onboarding/>
+      <Redirect to="/Mask-detail/search"/>
     )
   }
       

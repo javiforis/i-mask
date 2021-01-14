@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useRedirect } from '../../Hooks/useRedirect';
 import AdvicesCss from './Advices.module.css';
 
@@ -9,12 +9,12 @@ export const Advices = () => {
             <div className={AdvicesCss.Container}>
                 <h4 className={AdvicesCss.Title}>Consejos</h4>
                 <div className={AdvicesCss.FirstAdvice}>
-                    <button className={AdvicesCss.FirstButton} onClick={Redirect("/FirstAdviceDetail")}>
+                    <button className={AdvicesCss.FirstButton} onClick={() => Redirect("/FirstAdviceDetail")}>
                         ¿Qué hacer si te sientes mal?
                     </button>
                 </div>
                 <div className={AdvicesCss.SecondAdvice}>
-                    <button className={AdvicesCss.SecondButton} onClick={Redirect("/SecondAdviceDetail")}>
+                    <button className={AdvicesCss.SecondButton} onClick={() => Redirect("/SecondAdviceDetail")}>
                         Normas básicas de higiene
                     </button>
                 </div>

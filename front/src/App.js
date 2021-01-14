@@ -1,53 +1,50 @@
 import React, { useState } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import { Welcome } from './Components/Welcome/Welcome'
 import {Login} from './Components/Login/Login'
 import { RegisterProvider } from './Contexts/RegisterContext'
 import { LoginProvider } from './Contexts/LoginContext'
 import { ExternalRegisterSuccessful } from './Components/external-register-successful/ExternalRegisterSuccessful'
-import { WelcomeUserForm } from './Components/info-user-form/WelcomeUserForm'
-import { UserFormAllergens } from './Components/info-user-form/UserFormAllergens'
 import { SignUp } from './Components/SignUp/SignUp'
-// import { Error } from './Components/Advices/Error'
 import { Dashboard } from './Components/Dashboard/Dashboard'
-import { Error } from './Components/Advices/Error'
 import {Splash} from './Components/Splash/Splash'
 import Onboarding from './Components/Onboarding/Onboarding'
 import CameraTool from './Components/CameraTool/CameraTool'
 import { Filter } from './Components/Filter/Filter'
 import { MaskList } from './Components/MaskList/MaskList'
-// import Filter from './Components/Filter/Filter'
-
-
+// import { NavBar } from './Components/NavBar/NavBar'
+import { MaskDetail } from './Components/MaskDetail/MaskDetail'
+import { Advices } from './Components/Advices/Advices'
+import { ProdutProvider } from './Contexts/ProductContext'
+import {Timer} from './Components/Timer/Timer'
+import { NavBar } from './Components/NavBar/NavBar'
+import { FirstAdviceDetail } from './Components/FirstAdviceDetail/FirstAdviceDetail'
+import { SecondAdviceDetail } from './Components/SecondAdviceDetail/SecondAdviceDetail'
+import { Header} from './Components/Header/Header'
 
 export const App = () => {
 
     const [registerUserInfo, setRegisterUserInfo] = useState({});
     const [loginUserInfo, setLoginUserInfo] = useState({});
-    
-    
+    const [Products, setProducts] = useState(null);
 
     return (
         <>
-        
-                        {/* <Filter /> */}
             <Router>
                 <Switch>
-                    <Route exact path="/MaskList">
-                        <MaskList/>
-                    </Route>
+                    
                     <Route exact path="/">
                         <Splash />
                     </Route>
+
                     <Route path="/onboard">
                         <Onboarding />
                     </Route>
-                    <Route path="/welcome">
-                        <Welcome />
-                    </Route>
 
-                    <Route path="/guest">
-                        <Dashboard />
+                    <Route path="/login">
+                        <LoginProvider value={{...loginUserInfo, setLoginUserInfo}}>
+                        <Login />
+                        </LoginProvider>
+                        
                     </Route>
 
                     <Route path="/Register">
@@ -62,35 +59,54 @@ export const App = () => {
                         </RegisterProvider>
                     </Route>
 
-                    <Route path="/welcome-user-form">
-                        <RegisterProvider value={{...registerUserInfo, setRegisterUserInfo}}>
-                            <WelcomeUserForm />
-                        </RegisterProvider>
-                    </Route>
-                    <Route path="/user-form-allergens">
-                        <RegisterProvider value={{...registerUserInfo, setRegisterUserInfo}}>
-                            <UserFormAllergens />
-                        </RegisterProvider>
-                    </Route>
-
                     <Route path="/login-successful">
                         <LoginProvider value={{...loginUserInfo, setLoginUserInfo}}>
                             <Dashboard />
                         </LoginProvider>
                     </Route>
 
-                    <Route path="/error/:id"></Route>
-                    
+                    <Route>
+                        {/* Aqui todo lo que vaya con NavBar */}
+                        <Header />
+                        <Route path="/filter">
+                            <Filter />
+                        </Route>
 
+                        <Route exact path="/Mask-detail/:id">
+                            <ProdutProvider value={{Products, setProducts}}>
+                                <MaskDetail/>
+                            </ProdutProvider>
+                        </Route>
 
-                    <Route path="/camera">
-                        {/* Aqui se pueden poner divs con classnames */}
-                        <CameraTool />
-                        {/* <NavBar/> */}
-                    </Route>
+                        <Route path="/Camera">
+                            <ProdutProvider value={{Products, setProducts}}>
+                                <CameraTool />
+                            </ProdutProvider>
+                        </Route>
 
-                    <Route path="/filter">
-                        {/* <Filter /> */}
+                        <Route exact path="/Mask-list">
+                            <ProdutProvider value={{Products, setProducts}}>
+                                <MaskList/>
+                            </ProdutProvider>
+                        </Route>
+
+                        <Route exact path="/Advices">
+                            <Advices/>
+                        </Route>
+
+                        <Route exact path="/First-advice-detail">
+                            <FirstAdviceDetail/>
+                        </Route>
+
+                        <Route exact path="/Second-advice-detail">
+                            <SecondAdviceDetail/>
+                        </Route>
+
+                        <Route path="/timer">
+                            <Timer />
+                        </Route>
+
+                        <NavBar />
                     </Route>
                     
                 </Switch>

@@ -120,7 +120,7 @@ server.get("/google-login", async (req, res) => {
 												// "ip": req.ip
 											};
 											res.cookie("jwt", JWT.generateJWT(Payload), {httpOnly: true})
-											res.send({ "res" : "1", "msg": "New user has been created." });
+											res.redirect( "http://localhost:3000/Mask-list" );
 
 										}
 									});
@@ -208,7 +208,7 @@ server.get("/facebook-login", async (req, res) => {
 
                         res.cookie("Oauth", jwt, {"httpOnly" : true});
                         // res.send({"res" : "2", "msg" : "User facebook to fill form", data});
-                        res.redirect(`${process.env.FRONT_URL}/external-register-successful`);
+                        res.redirect( "http://localhost:3000/Mask-list" );
                     }
                     DBconnection.end();
                 });
@@ -449,27 +449,28 @@ server.post("/login", (req, res) => {
 						res.send({"res" : "-1", "msg" : err})
 					} else if(result.length){
 
-						const realPassword = result;
+						const realPassword = {password : result[0].psw, salt: result[0].salt};
 						const myRealPassword = JWT.verifyPassword(password, realPassword);
 						console.log(myRealPassword);
 
+					if(myRealPassword) {const sql = `SELECT U.* FROM users AS U JOIN PersonalUsers AS PU ON U.usrid = PU.ext_usrid WHERE U.email = ?`;
+						DBconnection.query(sql, [email,], (err, result) => {
 
-						// const sql = `SELECT U.* FROM users AS U JOIN PersonalUsers AS PU ON U.usrid = PU.ext_usrid WHERE U.email = ? AND PU.psw = ? AND PU.salt = ?`;
-						// DBconnection.query(sql, [email,], (err, result) => {
+						const Payload = {
+							"usrid" : result[0].usrid,
+							"name" : result[0].name,
+							"email": result[0].email,
+							"iat": new Date(),
+							// "role": "User",
+							// "ip":req.ip
+						};
 
-						// 	const Payload = {
-						// 		"usrid" : result[0].usrid,
-						// 		"name" : result[0].name,
-						// 		"email": result[0].email,
-						// 		"iat": new Date(),
-						// 		// "role": "User",
-						// 		// "ip":req.ip
-						// 	};
-	
-						// 	res.cookie("jwt", generateJWT(Payload),options)
-						// 	res.send({"res" : "1", "msg": "Logged¡", result});
+						res.cookie("jwt", JWT.generateJWT(Payload), {httpOnly: true})
+						res.send({"res" : "1", "msg": "Logged¡", result});
 
-						// })
+					})}
+					else (res.send({"msg" : "Contraseña incorrecta"}))
+						
 
 					} else {
 						res.send({"res" : "-2", "msg" : "user not registered yet"})

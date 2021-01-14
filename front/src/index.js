@@ -9,9 +9,6 @@ import { App } from './App.js';
 ReactDOM.render(
     <>
       <App />
-      {/* <Onboarding /> */}
-      {/* <Splash /> */}
-      {/* <Login /> */}
     </>,
   
   document.getElementById('root')
