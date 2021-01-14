@@ -103,7 +103,7 @@ export const App = () => {
                         </Route>
 
                         <Route path="/timer">
-                            <Timer />
+                            <Timer initialMinute ={0} initialSeconds={9}/>
                         </Route>
 
                         <NavBar />

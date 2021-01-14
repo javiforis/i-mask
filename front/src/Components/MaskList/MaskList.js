@@ -59,7 +59,7 @@ export const MaskList = () => {
                         <div className={MaskListCss.BigContainer}>
                             <div key={data.id} className={MaskListCss.Container} onClick={() => Redirect(`/Mask-detail/${data.id}`)}>
                                 <img className={MaskListCss.GenericImage} src="/generic-mask.svg" alt="generic mask"></img>
-                                <p className={MaskListCss.Name}>{data.name}</p>
+                                <p className={MaskListCss.Name}>{data.name.substr(0, 50)}</p>
                                 <p className={MaskListCss.Type}>{data.type}</p>
                                 <p className={MaskListCss.Certificate}>{data.certificate}</p>
                                 <p className={MaskListCss.Reusable}>No reutilizable</p>

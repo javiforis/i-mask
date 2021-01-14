@@ -13,23 +13,26 @@ export const Filter = (props) => {
     }
     return (
         <>
-        <div onClick={() => toogle("respiratory")}>
-            1
-            {filter.respiratory ? "Está activado": "Está desactivado"}
-        </div>
-        <div onClick={() => toogle("children")}>
-            2
-            {filter.children ? "Está activado": "Está desactivado"}
-        </div>
-        <div onClick={() => toogle("sport")}>
-            3
-            {filter.sport ? "Está activado": "Está desactivado"}
-        </div>
-        <div>
-            <button onClick={applyFilters}>
+            <div className={FilterCss.container}>
+                <div className={FilterCss.filters}>
+                    <div className={filter.respiratory ? FilterCss.Activated: ""} onClick={() => toogle("respiratory")}>
+                        <img src="" alt="pesado"></img>
+                        <p>Insuficiencia respiratoria</p>
+                        {filter.respiratory && <img src="/check-icon.svg" alt="check"></img>}
+                    </div>
+                    <div onClick={() => toogle("children")}>
+                        {filter.children ? "Está activado": "Está desactivado"}
+                    </div>
+                        <div onClick={() => toogle("sport")}>
+                        {filter.sport ? "Está activado": "Está desactivado"}
+                    </div>
+                <div>
+                    <button onClick={applyFilters}>
                 Aplicar filtro
-            </button>
-        </div>
+                    </button>
+                    </div>
+                </div>
+            </div>
         </>
         
     )

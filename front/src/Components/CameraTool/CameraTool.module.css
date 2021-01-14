@@ -1,0 +1,10 @@
+/* .canvasFile {
+    /* display: none;
+} */ 
+.Camera video {
+    position:absolute;
+    width: 100vw;
+}
+.Camera canvas {
+
+}

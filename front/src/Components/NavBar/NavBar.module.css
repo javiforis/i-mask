@@ -1,10 +1,12 @@
 .Bottom{
     position: fixed;
     height: 60px;
+    width: 100%;
     bottom: 0;
     background-color: white;
     flex-direction: row;
     box-shadow: -5px -10px 18px #888888;
+    z-index: 9999;
 }
 .HomeLogo{
     position: absolute;

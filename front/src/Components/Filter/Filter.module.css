@@ -1,0 +1,20 @@
+.container {
+    position: fixed;
+    z-index: 9999999;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #0007;
+}
+
+.filters {
+    background-color: white;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        /* y todo tu css */
+}
+.Activated {
+    background: green;
+}

@@ -2,9 +2,12 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import Quagga from "quagga";
 import { ProductContext } from '../../Contexts/ProductContext';
 import { Redirect } from 'react-router-dom';
+import CameraToolCss from './CameraTool.module.css'
+import { useRedirect } from '../../Hooks/useRedirect';
 
 export const CameraTool = () => {
   const video = useRef();
+  const canvasFile = useRef();
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,9 +37,14 @@ export const CameraTool = () => {
 
   const sendImg = () => {
     setIsLoading(true);
-    let img = video.current.children[1].toDataURL("img/png");
+    let uploadImg;
+    if(img == "imgFromPc") {
+      uploadImg = canvasFile.current.toDataURL("img/png");
+    }else {
+      uploadImg = video.current.children[1].toDataURL("img/png");
+    }
   	let fd = new FormData();
-		fd.append("img", img);
+		fd.append("img", uploadImg);
 		fetch("http://localhost:8080/save-photo", {
 				method: "POST",
 				body: fd
@@ -72,13 +80,31 @@ export const CameraTool = () => {
           <button onClick={captureImg}>Capturar foto</button>
         )
   }
+  const setImgFromPc = (img) => {
+    let canvas = canvasFile.current;
+    let context = canvas.getContext("2d");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    
+    context.drawImage(img, 0, 0);
+    setImg("imgFromPc")
+  }
 
+  const getImgFromPc = (event) => {
+      let img = new Image();
+      img.onload = () => setImgFromPc(img);
+      img.src = URL.createObjectURL(event.target.files[0])
+  }
   if (!data && !isLoading && !error)
   {
     return (
       <div>
-        <div ref={video}></div>
+        <div ref={video}className={CameraToolCss.Camera}></div>
+        <canvas className={CameraToolCss.canvasFile} ref={canvasFile}></canvas>
+        <input type="file" accept="image/*" onChange={getImgFromPc}></input>
         {renderButtons()}
+        <img src="/base-camera.svg" alt="queoesao"></img>
+        <img src="/base-camera2.svg" alt="queoesao"></img>
       </div>
 
     );
