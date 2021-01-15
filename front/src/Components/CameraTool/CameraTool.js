@@ -126,7 +126,7 @@ export const CameraTool = () => {
       <>
         <div ref={video}className={CameraToolCss.Camera}></div>
         <div className={img == "imgFromPc" ? CameraToolCss.CanvasWrapperOk : CameraToolCss.CanvasWrapper}>
-          <canvas className={CameraToolCss.canvasFileOk} ref={canvasFile}></canvas>
+          <canvas className={CameraToolCss.canvasFile} ref={canvasFile}></canvas>
         </div>
         <label htmlFor="uploadImage">
           <img src="/folder-icon.svg" alt="uploadimage" />

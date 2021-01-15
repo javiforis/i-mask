@@ -29,6 +29,7 @@
     margin-top: 400px;
     margin-left: 20px;
     background: linear-gradient(94.94deg, #A0C6FF -64.71%, rgba(255, 255, 255, 0) 107.07%), #FFFFFF;
+    outline: none;
 }
 
 .text {

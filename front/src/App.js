@@ -106,7 +106,7 @@ export const App = () => {
                         </Route>
 
                         <Route path="/timer">
-                            <Timer initialHour = {7} initialMinute ={59} initialSeconds={59}/>
+                            <Timer initialHour = {0} initialMinute ={0} initialSeconds={3}/>
                         </Route>
 
                         <Route exact path="/previous-camera">
