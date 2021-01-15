@@ -11,33 +11,29 @@
 .FirstAdvice {
     font-family: "display-bold";
     color: #0D3F67;
-    font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 50px;
+    margin-top: 70px;
 
 }
 .SecondAdvice {
     font-family: "display-bold";
     color: #0D3F67;
-    font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 181px;
+    margin-top: 201px;
     border-radius: 10px;
 }
 .ThirdAdvice {
     font-family: "display-bold";
     color: #0D3F67;
-    font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 255px;
+    margin-top: 275px;
 }
 .FourthAdvice {
     font-family: "display-bold";
     color: #0D3F67;
-    font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
     margin-top: 395px;
@@ -45,37 +41,39 @@
 .FirstAdviceText {
     margin-left: 65px;
     margin-top: 40px;
-    
+    font-size: 22px;
 }
 .SecondAdviceText {
     margin-left: 65px;
-
+    font-size: 22px;
 }
 .ThirdAdviceText {
     margin-left: 65px;
     margin-top: 60px;
+    font-size: 22px;
 }
 .FourthAdviceText {
     margin-left: 65px;
-    margin-top: 70px;
+    margin-top: 50px;
+    font-size: 22px;
 }
 .FirstIcon {
-    position: absolute;
-    margin-top: 60px;
-    margin-left: 10px;
-}
-.SecondIcon {
     position: absolute;
     margin-top: 50px;
     margin-left: 10px;
 }
+.SecondIcon {
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 10px;
+}
 .ThirdIcon {
     position: absolute;
-    margin-top: 100px;
+    margin-top: 70px;
     margin-left: 10px;
 }
 .FourthIcon {
     position: absolute;
-    margin-top: 100px;
+    margin-top: 60px;
     margin-left: 10px;
 }

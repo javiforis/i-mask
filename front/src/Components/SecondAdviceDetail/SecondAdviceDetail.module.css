@@ -1,0 +1,10 @@
+.onboardText {
+    position: absolute;
+    margin-top: 90px;
+    margin-left: 25px;
+}
+.backBtn {
+    position: absolute;
+    margin-top: 50px;
+    border: none;
+}

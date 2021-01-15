@@ -10,7 +10,8 @@ export const FirstAdviceDetail = () => {
                     <img src="/goBack-logo.svg" className={FirstAdviceDetailCss.goBack} alt="back"></img>
                 </button>
                 <div className={FirstAdviceDetailCss.bigContainer}>
-                    <div className={FirstAdviceDetailCss.container1}>
+                    <img className={FirstAdviceDetailCss.onboardText}src="/first-advice.svg" alt="onboard"></img>
+                    {/* <div className={FirstAdviceDetailCss.container1}>
                         <p className={FirstAdviceDetailCss.text1}>Conocer todos los síntomas del COVID. Los principales son:</p>
                         <img className={FirstAdviceDetailCss.fiebreImg}src="/fiebre-icon.svg" alt="fiebre"></img>
                         <img className={FirstAdviceDetailCss.tosImg}src="/tos-icon.svg" alt="tos"></img>
@@ -24,7 +25,7 @@ export const FirstAdviceDetail = () => {
 
                     <div className={FirstAdviceDetailCss.container3}>
                         <p className={FirstAdviceDetailCss.text3}>Si tiene fiebre, tos o dificultad para respirar busque atención médica de inmediato. Primero por teléfono, y...</p>
-                    </div>
+                    </div> */}
                 </div>
         </>
     )

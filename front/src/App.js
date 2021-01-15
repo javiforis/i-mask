@@ -22,6 +22,7 @@ import { SecondAdviceDetail } from './Components/SecondAdviceDetail/SecondAdvice
 import { Header} from './Components/Header/Header'
 import ProgressBar from "./Components/ProgressBar/ProgressBar"
 import { PreviousCamera } from './Components/PreviousCamera/PreviousCamera'
+import { Info } from './Components/Info/Info'
 
 export const App = () => {
 
@@ -105,11 +106,15 @@ export const App = () => {
                         </Route>
 
                         <Route path="/timer">
-                            <Timer initialHour = {0} initialMinute ={0} initialSeconds={5}/>
+                            <Timer initialHour = {7} initialMinute ={59} initialSeconds={59}/>
                         </Route>
 
                         <Route exact path="/previous-camera">
                             <PreviousCamera/>
+                        </Route>
+
+                        <Route exact path="/info">
+                            <Info/>
                         </Route>
 
                         <NavBar />

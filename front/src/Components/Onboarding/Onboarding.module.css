@@ -18,13 +18,14 @@
 }
 
 .Button {
+    font-family: "display-bold";
     position: absolute;
     border-radius: 8px;
     border: none;
     width: 280px;
     height: 52px;
     color: #132968;
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 400px;
     margin-left: 20px;
     background: linear-gradient(94.94deg, #A0C6FF -64.71%, rgba(255, 255, 255, 0) 107.07%), #FFFFFF;
@@ -51,8 +52,8 @@
 }
 .infologo {
     position: absolute;
-    margin-top: 90px;
-    margin-left: 85px;
+    margin-top: 100px;
+    margin-left: 90px;
 }
 .text2 {
     font-family: "display-bold";
