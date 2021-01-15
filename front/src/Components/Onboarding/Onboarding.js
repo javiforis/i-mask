@@ -27,7 +27,7 @@ class Onboarding extends Component {
     }
 
     changeStep = () => {
-        // TODO: Last step ??? 
+        // TODO: Last step ???
         if(this.state.step <2)
         this.setState({ step: this.state.step+1 })
         else {
@@ -42,14 +42,14 @@ class Onboarding extends Component {
                 <div className={OnboardingCss.header}>
 
                     <img className={OnboardingCss.TopLogo} src="/onboard-top-logo.svg"alt="logo"/>
-                    
+
                 </div>
-                
                 {this.state.content[this.state.step].first}
                 {this.state.content[this.state.step].second}
-                
                 <button className={OnboardingCss.Button} onClick={this.changeStep}>{ this.state.step < 2 ? "Siguiente" : "Empezar" }</button>
-                <ProgressBar bgColor="#132968" width={Math.ceil((this.state.step+1)*33.33)} height="13" />
+                <div className={OnboardingCss.ProgressBarBackground}>
+                    <ProgressBar bgColor="#132968" width={Math.ceil((this.state.step+1)*33.33)} height={10} />
+                </div>
            </div>
            </>
         )

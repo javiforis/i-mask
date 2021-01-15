@@ -12,17 +12,17 @@ export const Login = () => {
 
     const Redirect = useRedirect();
     const Login = useContext(LoginContext);
-    
+
     const {validateCredentials, validateEmail, validatePsw} = useValidator();
 
     const [formValues, handleInputChange, isValid] = useForm(
         {email : "", password : ""},
         {email : validateEmail, password : validatePsw}
     );
-    
-        
+
+
     const [statePsw, setStatePsw] = useState({
-        type : "password",   
+        type : "password",
         placeholder : "**********",
     })
 
@@ -35,7 +35,7 @@ export const Login = () => {
     const HandlePswVisibility = (e) => {
 
         e.preventDefault();
-        
+
         setStatePsw({
             ...statePsw,
             type : type === "password" ? "text" : "password",
@@ -83,7 +83,7 @@ export const Login = () => {
                     }
                 }
             })
-        } 
+        }
     }
 
     const showCredentialsError = () => {
@@ -93,7 +93,7 @@ export const Login = () => {
                         <p>La contraseña que has introducido no es correcta. Por favor introduce la contraseña correcta para poder entrar</p>
                   </div>
         }
-        
+
         if(Error === "-2"){
             return (
                 <>
@@ -115,27 +115,27 @@ export const Login = () => {
             return <div className={LoginCss.ErrorInCredentials}>
                         <p>Lo sentimos, en estos momentos no podemos contactar con la base de datos, porfavor vuelva a intentarlo de nuevo mas tarde.</p>
                     </div>
-        } 
-        
+        }
+
         if(Error === "-4" || !isValid.email || !isValid.password){
             return <div className={LoginCss.ErrorInCredentials}>
                         <p>El email o contraseña que has introducido no son correctos, recuerda que deben ser:</p>
                         <ul className={LoginCss.ErrorInCredentialsList}>
                             <li>Ej: example@gmail.com</li>
                             <li>Ej: 9t7kfCqQt </li>
-                                
+
                         </ul>
 
                   </div>
 
-        } 
-        
+        }
+
         if(Error === "-5"){
             return <div className={LoginCss.ErrorInCredentials}>
                         <p>Los campos de email y contraseña no pueden estar vacíos.</p>
                   </div>
         }
-        
+
     }
 
     return (
@@ -146,7 +146,7 @@ export const Login = () => {
             <form onSubmit={handleSubmit} className={LoginCss.loginForm}>
                 <h1 className={LoginCss.titleLogin}>¡Bienvenido <br></br>a iMask!</h1>
                 <p className={LoginCss.titleEmail}>Email</p>
-                
+
                 <label></label>
                 <input className={LoginCss.inputEmail}
                     id="email"
@@ -157,7 +157,7 @@ export const Login = () => {
                     value={email}
                     onChange={handleInputChange}
                     />
-                <i id={LoginCss.envelope} className="far fa-envelope"></i>   
+                <i id={LoginCss.envelope} className="far fa-envelope"></i>
                 <img className={LoginCss.eyeIcon} src="eye-icon.svg" alt="eye-icon"></img>
                 <p className={LoginCss.titlePassword}>Contraseña</p>
                 <label></label>
@@ -181,10 +181,10 @@ export const Login = () => {
                 {/* <button className={LoginCss.backBtn} onClick={() => {redirect("/")}}>&lt;</button> */}
             </form>
             <p className={LoginCss.ConnectSocial}>Connect with your social account</p>
-            <button onClick={(e) => Redirect(`${process.env.REACT_APP_backUrl}/facebook-redirect`, e, true)}>
+            <button className={LoginCss.googlebtn}onClick={(e) => Redirect(`${process.env.REACT_APP_backUrl}/facebook-redirect`, e, true)}>
                 <img className={LoginCss.facebook} src="facebook-icon.svg" alt="facebookicon"></img>
             </button>
-            <button onClick={(e) => Redirect(`${process.env.REACT_APP_backUrl}/google-redirect`, e, true)}>
+            <button className={LoginCss.googlebtn} onClick={(e) => Redirect(`${process.env.REACT_APP_backUrl}/google-redirect`, e, true)}>
                 <img className={LoginCss.google} src="google-icon.svg" alt="googleicon"></img>
             </button>
         </>

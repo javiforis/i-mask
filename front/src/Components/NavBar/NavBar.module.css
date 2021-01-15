@@ -1,3 +1,12 @@
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-5px) scale(1.1); }
+}
+
 .Bottom{
     position: fixed;
     height: 60px;
@@ -5,9 +14,15 @@
     bottom: 0;
     background-color: white;
     flex-direction: row;
-    box-shadow: -5px -10px 18px #888888;
-    z-index: 9999;
+    box-shadow: -5px -3px 18px #888888;
+    z-index: 99999999;
 }
+
+.Active {
+    -webkit-animation: mover 1.25s infinite  alternate;
+    animation: mover 1.25s infinite  alternate;
+}
+
 .HomeLogo{
     position: absolute;
     width: 35px;

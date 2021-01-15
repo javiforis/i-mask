@@ -1,6 +1,7 @@
 .Header {
-    position: sticky;
+    position: fixed;
     height: 42px;
+    width: 100vw;
     top: 0;
     background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
     z-index: 99999;

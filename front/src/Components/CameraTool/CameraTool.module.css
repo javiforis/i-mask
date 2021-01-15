@@ -1,43 +1,95 @@
-/* .canvasFile {
-    /* display: none;
-} */
-.Camera video {
-    position:absolute;
+.Camera {
+    position: absolute;
+    top: 42px;
     width: 100vw;
-    z-index: 999999;
+    height: 378px;
+    overflow: hidden;
 }
+.Camera video {
+    position: absolute;
+    transform: translate(-18.3%);
+    height: 378px;
+    z-index: 1;
+}
+
+.CanvasWrapper {
+    position: absolute;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+
 .Camera canvas {
     position: absolute;
-    width: 100vw;
+    left: 50%;
+    transform: translate(-50%);
+    height: 378px;
+    z-index: 2;
 }
+
+.canvasFile {
+    position: absolute;
+    /* left: 50%;
+    transform: translate(-50%); */
+    height: 366px;
+    z-index: 2;
+}
+
+.CanvasWrapperOk {
+    position: absolute;
+    display: flex;
+    height: 366px;
+    justify-content: center;
+    background: black;
+    z-index: 2;
+}
+
 .againPicBtn {
     position: absolute;
-    margin-top: 100px;
-    margin-left: -200px;
+    top: 455px;
+    margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    z-index: 4;
 }
 .sendPicBtn {
     position: absolute;
-    margin-top: 100px;
-    margin-left: -200px;
+    top: 455px;
+    margin-left: 190px;
+    background-color: transparent;
+    border: none;
+    z-index: 4;
 }
 .captPicBtn {
     position: absolute;
-    margin-top: 220px;
-    margin-left: -230px;
+    top: 415px;
+    margin-left: 70px;
     background-color: transparent;
     border: none;
-    z-index: 999999;
+    z-index: 4;
+
 }
 .baseCam1 {
     position: absolute;
-    margin-left: -307px;
-    margin-top: 220px;
+    top: 417px;
+    z-index: 3;
 }
+
 .basecam2 {
     position: absolute;
-    margin-left: -307px;
-    margin-top: 245px;
+    top: calc(417px + 24px);
+    z-index: 3;
 }
-.uploadBtn {
 
+.uploadBtn {
+    display: none;
+    z-index: 9999;
+    position: absolute
+}
+
+label, label img {
+    z-index: 3;
+    width: 40px;
+    position: absolute;
 }

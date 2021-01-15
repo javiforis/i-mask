@@ -6,6 +6,17 @@
     background-color: rgba(16, 189, 198, 0.7);
 }
 
+.ProgressBarBackground {
+    background: white;
+    width: 210px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%);
+    height: 10px;
+    margin-top: 480px;
+    border-radius: 8px;
+}
+
 .Button {
     position: absolute;
     border-radius: 8px;

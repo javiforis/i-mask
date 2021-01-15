@@ -61,6 +61,19 @@
     -webkit-animation: mover 2s infinite  alternate;
     animation: mover 2s infinite  alternate;
 }
+
+.ProgressBarBackground {
+    background: #F0F3F6;
+    width: 134.5px;
+    left: 110px;
+    top: 425px;
+    z-index: 9999999999;
+    position: absolute;
+    transform: translate(-50%);
+    height: 17px;
+    border-radius: 8px;
+}
+
 @-webkit-keyframes mover {
     0% { transform: translateY(0); }
     100% { transform: translateY(-20px); }
@@ -72,9 +85,10 @@
 
 .bigContainer {
     position: absolute;
+    top: 42px;
     background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 42px);
 }
 .Certif2 {
     color: #00CACE;

@@ -17,7 +17,7 @@ export const MaskList = () => {
 
     useEffect(() => {
         Count.current++;
-        if(!Products || Count.current > 1) {
+        if(!Products || !Products.length || Count.current > 1) {
         Fetch(`${process.env.REACT_APP_backUrl}/get-mask-by-filters`, {data: Object.entries(Filters).reduce((result, [k, v]) => ({...result, [k]: +v}), {})})
         .then(data => {
             if(data.result)
@@ -49,10 +49,10 @@ export const MaskList = () => {
                 <img src="goBack-logo.svg" className={MaskListCss.goBack} alt="back"></img>
             </button>}
             {
-                showFilter && <Filter Filters={Filters} setFilters={applyFilters}/> 
+                showFilter && <Filter Filters={Filters} setFilters={applyFilters}/>
             }
             {
-                Products && Products.map(data => {
+                Products && Products.length && Products.map(data => {
                     // console.log(data)
                     return (
                         <>

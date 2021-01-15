@@ -20,6 +20,7 @@ import { NavBar } from './Components/NavBar/NavBar'
 import { FirstAdviceDetail } from './Components/FirstAdviceDetail/FirstAdviceDetail'
 import { SecondAdviceDetail } from './Components/SecondAdviceDetail/SecondAdviceDetail'
 import { Header} from './Components/Header/Header'
+import ProgressBar from "./Components/ProgressBar/ProgressBar"
 
 export const App = () => {
 
@@ -31,7 +32,7 @@ export const App = () => {
         <>
             <Router>
                 <Switch>
-                    
+
                     <Route exact path="/">
                         <Splash />
                     </Route>
@@ -44,7 +45,7 @@ export const App = () => {
                         <LoginProvider value={{...loginUserInfo, setLoginUserInfo}}>
                         <Login />
                         </LoginProvider>
-                        
+
                     </Route>
 
                     <Route path="/Register">
@@ -108,7 +109,7 @@ export const App = () => {
 
                         <NavBar />
                     </Route>
-                    
+
                 </Switch>
             </Router>
         </>

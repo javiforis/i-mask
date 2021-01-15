@@ -9,8 +9,9 @@ export const CameraTool = () => {
   const video = useRef();
   const canvasFile = useRef();
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  
 
   const [img, setImg] = useState(false);
 
