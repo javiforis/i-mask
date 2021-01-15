@@ -1,0 +1,39 @@
+.onBoard {
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 13px;
+}
+.Start {
+        font-family: "display-regular";
+        position: absolute;
+        border-radius: 8px;
+        border: none;
+        width: 280px;
+        height: 52px;
+        color: white;
+        margin-left: 20px;
+        margin-top: 430px;
+        font-size: 20px;
+        background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
+    
+
+}
+.StopWatch {
+    font-family: "display-bold";
+    position: absolute;
+    margin-top: 320px;
+    margin-left: 120px;
+    font-size: 20px;
+
+}
+.ring {
+    position: absolute;
+    margin-top: 270px;
+    margin-left: 95px;
+}
+.timeout {
+    position: absolute;
+    margin-top: 248px;
+    margin-left: -8px;
+    width: 328px;
+}

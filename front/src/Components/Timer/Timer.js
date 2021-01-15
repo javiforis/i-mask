@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-
+import TimerCss from './Timer.module.css';
 
 
 export const Timer = (props) => {
-    const {initialMinute = 0,initialSeconds = 0} = props;
+    const {initialHour = 0, initialMinute = 0,initialSeconds = 0} = props;
+    const [ hours, setHours] = useState(initialHour);
     const [ minutes, setMinutes ] = useState(initialMinute);
     const [seconds, setSeconds ] =  useState(initialSeconds);
     const [ running, setRunning ] = useState(false)
@@ -37,13 +38,17 @@ export const Timer = (props) => {
 
     return ( 
         <div>
+            <img src="/timer-onboard.svg" alt="onboard" className={TimerCss.onBoard}></img>
+            <img src="/timer-ring.svg" alt="onboard" className={TimerCss.ring}></img>
             {
-                running ? <button onClick={stopInterval}>Stop</button>: <button onClick={startInterval}>Start</button>
+                running ? <button className={TimerCss.Start} onClick={stopInterval}>Stop</button>: <button className={TimerCss.Start}onClick={startInterval}>Inicio</button>
             }
             
-        { minutes === 0 && seconds === 0
-            ? <div>holaquetal</div>
-            : <h1> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+        { hours === 0 && minutes === 0 && seconds === 0
+            ? <div>
+                <img src="/timeout.svg" alt="onboard" className={TimerCss.timeout}></img>
+            </div>
+            : <h1 className={TimerCss.StopWatch}> {hours}:{minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
         }
         </div>
     )}
