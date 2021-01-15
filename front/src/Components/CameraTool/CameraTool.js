@@ -96,8 +96,8 @@ export const CameraTool = () => {
     if (img)
       return (
         <>
-          <button className={CameraToolCss.againPicBtn} onClick={retry}><img src="/goBack-logo.svg" alt="back" /><br />Volver a capturar foto</button>
-          <button className={CameraToolCss.sendPicBtn} onClick={sendImg}><img src="/goBack-logo.svg" alt="back" /><br />Enviar foto</button>
+          <button className={CameraToolCss.againPicBtn} onClick={retry}><img src="/camera-back-icon.svg" alt="back" /><br />Repetir foto</button>
+          <button className={CameraToolCss.sendPicBtn} onClick={sendImg}><img src="/camera-save-icon.svg" alt="back" /><br />Enviar foto</button>
         </>
       )
     else
@@ -129,7 +129,7 @@ export const CameraTool = () => {
           <canvas className={CameraToolCss.canvasFileOk} ref={canvasFile}></canvas>
         </div>
         <label htmlFor="uploadImage">
-          <img src="/folder-icon.svg" alt="upload image" />
+          <img src="/folder-icon.svg" alt="uploadimage" />
         </label>
         <input type="file" accept="image/*" id="uploadImage" onChange={getImgFromPc} className={CameraToolCss.uploadBtn}></input>
         {renderButtons()}
@@ -140,7 +140,7 @@ export const CameraTool = () => {
   }
   else if (isLoading) {
     return (
-      <p>Is loading</p>
+      <img className={CameraToolCss.loading}src="/isLoading.svg" alt="loading"></img>
     )
   }
   else if (error) {

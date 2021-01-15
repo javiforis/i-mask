@@ -16,11 +16,11 @@ export const NavBar = () => {
             <img className={`${NavBarCss.AdvicesLogo} ${location.pathname.toLowerCase().includes("/advices") ? NavBarCss.Active : ""}`} src="/advices-logo.svg" alt="adv"></img>
           </div>
 
-          <div onClick={()=>redirect("/profile")}>
-            <img className={`${NavBarCss.ProfileLogo} ${location.pathname.toLowerCase().includes("/profile") ? NavBarCss.Active : ""}`} src="/profile-logo.svg" alt="prof"></img>
+          <div onClick={()=>redirect("/timer")}>
+            <img className={`${NavBarCss.ProfileLogo} ${location.pathname.toLowerCase().includes("/timer") ? NavBarCss.Active : ""}`} src="/profile-logo.svg" alt="prof"></img>
           </div>
 
-          <div onClick={()=>redirect( "/Camera")}>
+          <div onClick={()=>redirect( "/previous-camera")}>
             <img className={`${NavBarCss.CameraLogo} ${location.pathname.toLowerCase().includes("/camera") ? NavBarCss.Active : ""}`} src="/camera-logo.svg" alt="cam"></img>
           </div>
       </div>

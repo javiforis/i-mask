@@ -1,0 +1,24 @@
+.goCamera {
+    position:absolute;
+    border-radius: 8px;
+    border: none;
+    width: 280px;
+    height: 52px;
+    color: white;
+    margin-top: 400px;
+    margin-left: 20px;
+    font-size: 14px;
+    background: linear-gradient(94.94deg, #428DFF -64.71%, rgba(255, 255, 255, 0) 107.07%), #00CACE;
+
+}
+.onboardImg {
+    position: absolute;
+    margin-top: 75px;
+    margin-left: 20px;
+    width: 280px;
+
+}
+.container {
+    position: absolute;
+    width: 100vw;
+}

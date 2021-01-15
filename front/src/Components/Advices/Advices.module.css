@@ -14,7 +14,7 @@
     font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 5px;
+    margin-top: 50px;
 
 }
 .SecondAdvice {
@@ -23,7 +23,7 @@
     font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 136px;
+    margin-top: 181px;
     border-radius: 10px;
 }
 .ThirdAdvice {
@@ -32,7 +32,7 @@
     font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 210px;
+    margin-top: 255px;
 }
 .FourthAdvice {
     font-family: "display-bold";
@@ -40,7 +40,7 @@
     font-size: 27px;
     position: absolute;
     box-shadow: 5px 10px 8px #888888;
-    margin-top: 350px;
+    margin-top: 395px;
 }
 .FirstAdviceText {
     margin-left: 65px;

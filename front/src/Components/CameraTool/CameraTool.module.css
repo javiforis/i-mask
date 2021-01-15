@@ -46,25 +46,30 @@
 }
 
 .againPicBtn {
+    font-family: "display-bold";
+    color: white;
     position: absolute;
-    top: 455px;
-    margin-left: 20px;
+    top: 445px;
+    margin-left: 60px;
     background-color: transparent;
     border: none;
     z-index: 4;
 }
 .sendPicBtn {
+    font-family: "display-bold";
+    color: white;
     position: absolute;
-    top: 455px;
-    margin-left: 190px;
+    top: 445px;
+    margin-left: 180px;
     background-color: transparent;
     border: none;
     z-index: 4;
 }
 .captPicBtn {
+    
     position: absolute;
     top: 415px;
-    margin-left: 70px;
+    margin-left: 75px;
     background-color: transparent;
     border: none;
     z-index: 4;
@@ -83,13 +88,17 @@
 }
 
 .uploadBtn {
-    display: none;
     z-index: 9999;
-    position: absolute
+    position: absolute;
 }
 
 label, label img {
     z-index: 3;
     width: 40px;
     position: absolute;
+}
+.loading {
+    position: absolute;
+    width: 100vw;
+    margin-top: 70px;
 }
